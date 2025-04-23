@@ -3,11 +3,12 @@ import cors from 'cors';
 
 import diagnosesRouter from './routes/diagnosesRoute';
 import patientsRouter from './routes/patientsRoute';
+import path from 'path';
 
 const app = express();
 
 app.use(cors());
-app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 
 const PORT = 3001;
