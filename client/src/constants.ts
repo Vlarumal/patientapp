@@ -1,2 +1,1 @@
-// export const apiBaseUrl = 'http://localhost:3001/api';
-export const apiBaseUrl = 'https://patientapp-wzu7.onrender.com/api';
+export const apiBaseUrl: string = import.meta.env.VITE_API_BASE_URL;
