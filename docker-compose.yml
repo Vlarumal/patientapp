@@ -1,0 +1,29 @@
+services:
+  patientapp-frontend-prod:
+    image: patientapp-frontend-prod
+    build: 
+      context: ./client
+      dockerfile: ./client/Dockerfile
+    # volumes:
+    #   - ./client:/usr/src/app
+    container_name: patientapp-frontend-prod
+
+  patientapp-backend-prod:
+    image: patientapp-backend-prod
+    build: 
+      context: ./server
+      dockerfile: ./server/Dockerfile
+    # volumes:
+    #   - ./server:/usr/src/app
+    container_name: patientapp-backend-prod
+
+  nginx:
+    image: nginx:stable-alpine3.21-slim
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 80:80
+    container_name: patientapp-reverse-proxy-prod
+    depends_on:
+      - patientapp-frontend-prod
+      - patientapp-backend-prod
